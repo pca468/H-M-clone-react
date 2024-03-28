@@ -1,10 +1,12 @@
-import logo from './logo.svg';
+import { useEffect, useState } from 'react';
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Routes, Route } from 'react-router-dom';
 import ProductAll from './page/ProductAll';
 import Login from './page/Login';
 import ProductDetail from './page/ProductDetail';
 import Navbar from './component/Navbar';
+import PrivateRoute from './route/PrivateRoute';
 
 // 1. 전체상품페이지, 로그인, 상품상세페이지
 // 1-1. 네비게이션 바
@@ -18,6 +20,11 @@ import Navbar from './component/Navbar';
 // 9. 상품을 검색할 수 있다. 
 
 function App() {
+  const [authenticate, setauthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
+  useEffect(() => {
+    console.log("AAAA",authenticate)
+  },[authenticate])
+
   return ( // detail 페이지는 Restful Route의 규칙을 따라서 만든다.
           // Navbar를 Routes 위에 넣어서 화면 전환시에도 계속 나오게 만든다.
           // Rest API 와 Restful와 같은 개념
@@ -25,8 +32,9 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
-        <Route path="/login" element={<Login/>}/>
-        <Route path="/product/:id" element={<ProductDetail/>}/> 
+        <Route path="/login" element={<Login setauthenticate={setauthenticate}/>}/>
+        <Route path="/product/:id" 
+          element={<PrivateRoute authenticate={authenticate}/>}/> 
       </Routes>
     </div>
   );
