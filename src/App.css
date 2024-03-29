@@ -37,3 +37,8 @@
 .searchBox input{
   border-width: 0;
 }
+
+.product-img{
+  display: flex;
+  justify-content: flex-end;
+}

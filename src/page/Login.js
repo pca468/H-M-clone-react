@@ -4,12 +4,12 @@ import { useNavigate } from 'react-router-dom';
 
 const Login = ({setauthenticate}) => {
     const navigate = useNavigate();
-  const loginUser=(event)=>{
-    event.preventDefault();
-    console.log("Login user function")
-    setauthenticate(true);
-    navigate("/");
-  };
+    const loginUser=(event)=>{
+      event.preventDefault();
+      console.log("Login user function")
+      setauthenticate(true);
+      navigate("/");
+    };
 
   return (
     <Container>
