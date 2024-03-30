@@ -30,7 +30,7 @@ function App() {
           // Navbar를 Routes 위에 넣어서 화면 전환시에도 계속 나오게 만든다.
           // Rest API 와 Restful와 같은 개념
     <div>
-      <Navbar />
+      <Navbar authenticate={authenticate}  setauthenticate ={setauthenticate}/>
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
         <Route 
