@@ -21,6 +21,7 @@ import PrivateRoute from './route/PrivateRoute';
 
 function App() {
   const [authenticate, setauthenticate] = useState(false) // true면 로그인이 됨 false면 로그인이 안됨
+
   useEffect(() => {
     console.log("AAAA",authenticate)
   },[authenticate])
@@ -32,8 +33,12 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductAll/>}/>
-        <Route path="/login" element={<Login setauthenticate={setauthenticate}/>}/>
-        <Route path="/product/:id" 
+        <Route 
+          path="/login" 
+          element={<Login setauthenticate = {setauthenticate}/>}
+          />
+        <Route 
+          path="/product/:id" 
           element={<PrivateRoute authenticate={authenticate}/>}/> 
       </Routes>
     </div>

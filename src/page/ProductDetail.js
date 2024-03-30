@@ -3,20 +3,20 @@ import { Container, Row, Col } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 
 const ProductDetail = () => {
-  let{id} = useParams
+  let{id} = useParams()
 
   const [product, setProduct] = useState(null)
   const getProductDetail= async()=>{
-    let url = `http://localhost:5000/products/${id}`
-    let reponse = await fetch(url)
-    let data = await reponse.json
+    let url = `https://my-json-server.typicode.com/pca468/H-M-clone-react/products/${id}`
+    let reponse = await fetch(url);
+    let data = await reponse.json();
     console.log(data)
     setProduct(data);
   }
    useEffect(() => {
     getProductDetail()
   
-  },[getProductDetail])
+  },[])
 
   return (
   
@@ -27,6 +27,7 @@ const ProductDetail = () => {
           </Col>
           <Col>
             <div>{product?.title}</div>
+            <div>{product?.price}</div>
           </Col>
         </Row>
       </Container>
