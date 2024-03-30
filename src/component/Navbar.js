@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faUser } from '@fortawesome/free-regular-svg-icons'
-import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faBars,faSearch } from '@fortawesome/free-solid-svg-icons';
 import { useNavigate } from 'react-router-dom';
 
 const Navbar = ({authenticate, setauthenticate}) => {
@@ -15,7 +15,8 @@ const Navbar = ({authenticate, setauthenticate}) => {
          "SALE", 
          "지속가능성",
         ];
-        const navigate = useNavigate()
+        let [width, setWidth] = useState()
+        const navigate = useNavigate();
 
         const goToLogin = () => {
           navigate('/login')
@@ -31,7 +32,21 @@ const Navbar = ({authenticate, setauthenticate}) => {
 
   return (
     <div>
-      <div>
+      <div className="side-menu" style={{ width: width }}>
+        <button className="closebtn" onClick={() => setWidth(0)}>
+          &times;
+        </button>
+        <div className="side-menu-list" id="menu-list">
+          {menuList.map((menu, index) => (
+            <button key={index}>{menu}</button>
+          ))}
+        </div>
+      </div>
+
+      <div className="nav-header">
+        <div className="burger-menu hide">
+          <FontAwesomeIcon icon={faBars} onClick={() => setWidth(250)} />
+        </div>
         {authenticate ? (
             <div class ="login-button" onClick={() => setauthenticate(false)}>
               <FontAwesomeIcon icon={faUser} />
