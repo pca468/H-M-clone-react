@@ -54,6 +54,21 @@
   .search-box{
     display: none;
   }
+  .nav-section{
+    padding: 1rem;
+  }
+
+  .searchBox{
+    padding: 1rem;
+    margin: 1rem;
+    width: 50%;
+    display: flex;
+    justify-content: flex-start;
+  }
+
+  .menu-list{
+    display: none;
+  }
 }
 
 .side-menu {
