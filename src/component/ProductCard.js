@@ -10,13 +10,13 @@ const ProductCard = ({item}) => {
   }
 
   return (
-    <div className='card' onClick={showDetail}>
-      <img src={item?.img}
+    <div className='item-card' onClick={showDetail}>
+      <img className="item-img" src={item?.img}
       />
       <div>{item?.choice == true ? "Consious choice" : ""}</div>
-      <div>{item?.title}</div>
-      <div>\{item?.price}</div>
-      <div>{item?.new == true ? "신제품" : ""}</div>
+      <div className='item-text-font'>{item?.title}</div>
+      <div className='best-item'>\{item?.price}</div>
+      <div className='best-item'>{item?.new == true ? "신제품" : ""}</div>
     </div>
   )
 }

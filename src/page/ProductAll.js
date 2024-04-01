@@ -46,7 +46,7 @@ const ProductAll = () => {
               {error}
             </Alert>
           ) : (
-            <Row>
+            <Row className='product-list'>
             {ProductList.map((menu) => (
               <Col lg={3}>
                 <ProductCard item={menu}/>
