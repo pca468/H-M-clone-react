@@ -43,6 +43,10 @@
   justify-content: flex-end;
 }
 
+.Detail-img{
+  width: 300px;
+}
+
 .row {
   --bs-gutter-x: 0rem;
   padding: 0rem 0.25rem;

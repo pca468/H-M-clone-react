@@ -39,7 +39,7 @@ function App() {
           />
         <Route 
           path="/product/:id" 
-          element={<PrivateRoute authenticate={authenticate}/>}/> 
+          element={<PrivateRoute />}/> 
       </Routes>
     </div>
   );

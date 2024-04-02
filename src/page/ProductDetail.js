@@ -1,18 +1,19 @@
 import React, {useEffect, useState} from 'react'
 import { Container, Row, Col, Button, Dropdown } from 'react-bootstrap'
+import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { productAction } from '../redux/actions/productAction'
 
 const ProductDetail = () => {
   let{id} = useParams()
 
-  const [product, setProduct] = useState(null)
-  const getProductDetail= async()=>{
-    let url = `https://my-json-server.typicode.com/pca468/H-M-clone-react/products/${id}`
-    let reponse = await fetch(url);
-    let data = await reponse.json();
-    console.log(data)
-    setProduct(data);
+  const product = useSelector((state) => state.product.selectedItem);
+  const dispatch = useDispatch();
+
+  const getProductDetail = async() => {
+    dispatch(productAction.getProductDetail(id));
   }
+
    useEffect(() => {
     getProductDetail()
   
@@ -23,7 +24,7 @@ const ProductDetail = () => {
       <Container>
         <Row>
           <Col className='product-img'>
-            <img src={product?.img}/>
+            <img src={product?.img} className='Detail-img'/>
           </Col>
           <Col>
             <div>{product?.title}</div>

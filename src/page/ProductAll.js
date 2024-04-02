@@ -4,33 +4,24 @@ import ProductCard from '../component/ProductCard'
 import { Container,Row,Col, Alert } from 'react-bootstrap'
 import { useSearchParams } from 'react-router-dom'
 import { keyboard } from '@testing-library/user-event/dist/keyboard'
+import { productAction } from '../redux/actions/productAction'
+import { useDispatch, useSelector } from 'react-redux'
 
 const ProductAll = () => {
 
-  const [ProductList, setProductList] = useState([])
+  // const [ProductList, setProductList] = useState([]) redux 에서는 useState대신 useSelector을 사용한다.
+  const ProductList = useSelector(state => state.product.ProductList)
   const [query, setQuery] = useSearchParams();
+  const dispatch = useDispatch()
   let [error, setError] = useState("");
 
-  const getProducts= async ()=>{
-      try{
+  const getProducts=()=>{
+       // 아래 코드 처럼 dispatch를 사용하면 바로 reducer를 가는 것이 아니라 productAction을 거쳐서 가게됨
 
         let searchQuery = query.get('q') || "";
         console.log("쿼리값은? ",searchQuery)
-        let url =`https://my-json-server.typicode.com/pca468/H-M-clone-react/products?q=${searchQuery}`
-        let response = await fetch(url);
-        let data = await response.json();
-        setProductList(data);
+        dispatch(productAction.getProducts(searchQuery));
 
-        if(data.length < 1){
-          if(searchQuery !== ""){
-            setError(`${searchQuery}와 일치하는 상품이 없습니다.`)
-          }else {
-            throw new Error("결과가 없습니다.")
-          }
-        }
-    } catch(err) {
-      setError(err.message)
-    }
   };
 
   useEffect(() => {
